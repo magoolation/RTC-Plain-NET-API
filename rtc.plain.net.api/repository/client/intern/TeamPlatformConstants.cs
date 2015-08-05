@@ -1,20 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.Concurrent;
+using System.Threading;
 
 namespace rtc.plain.net.api.repository.client.intern
 {
-    class TeamPlatformConstants
+    public class TeamPlatformConstants
     {
-        internal static void initializeEventSourceTPE()
+        public static readonly string BUNDLE_ID = "com.ibm.team.repository.client";
+        private static Object EVENT_SOURCE_TPE = null;
+
+        public static void initializeEventSourceTPE()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(typeof(TeamPlatformConstants).ToString());
         }
 
-        internal static void shutDownEventSourceTPE()
+        public static void shutDownEventSourceTPE()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(typeof(TeamPlatformConstants).ToString());
+        }
+
+        public static Object getEventSourceTPE()
+        {
+            return null;
         }
     }
 }

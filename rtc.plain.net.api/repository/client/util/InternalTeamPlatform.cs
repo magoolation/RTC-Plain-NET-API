@@ -87,7 +87,27 @@ namespace rtc.plain.net.api.repository.client.util
 
         private void initializeDebugOptions()
         {
-            throw new NotImplementedException();
+            String value = null;
+
+            if (asBundle)
+            {
+
+                value = "XXX";// Platform.getDebugOption("com.ibm.team.repository.client/traceNoCancelableServerCall");
+
+            }
+
+            else
+            {
+
+                value = "YYY"; //System.getProperty("com.ibm.team.repository.client.traceNoCancelableServerCall");
+
+            }
+
+            bool TRACE_NON_CANCELABLE_SERVER_CALLS = (value != null) && (value.Equals("true", StringComparison.InvariantCultureIgnoreCase));
+
+            //TeamServiceCallContextImpl.setLogNonCancelableServiceCalls(TRACE_NON_CANCELABLE_SERVER_CALLS);
+
+            throw new NotImplementedException("TODO: descomentar as partes");
         }
 
         internal void shutdown()

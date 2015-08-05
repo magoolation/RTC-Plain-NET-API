@@ -43,19 +43,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="links\common\IEndPointDescriptor.cs" />
+    <Compile Include="links\common\IItem.cs" />
+    <Compile Include="links\common\IItemType.cs" />
+    <Compile Include="links\common\ILinkType.cs" />
+    <Compile Include="links\common\IReference.cs" />
+    <Compile Include="repository\common\IAuditable.cs" />
+    <Compile Include="repository\common\IAuditableHandle.cs" />
+    <Compile Include="links\common\ILink.cs" />
+    <Compile Include="links\common\ILinkHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="repository\client\intern\ContentManager.cs" />
+    <Compile Include="links\client\ILinkEvent.cs" />
+    <Compile Include="repository\client\intern\LinkEvent.cs" />
     <Compile Include="repository\client\intern\TeamPlatformConstants.cs" />
     <Compile Include="repository\client\intern\TeamRepositoryService.cs" />
     <Compile Include="repository\client\ITeamRepository.cs" />
     <Compile Include="repository\client\ITeamRepositoryService.cs" />
     <Compile Include="repository\client\TeamPlatform.cs" />
+    <Compile Include="repository\client\util\Event.cs" />
+    <Compile Include="repository\client\util\EventSource.cs" />
+    <Compile Include="repository\client\util\IEvent.cs" />
     <Compile Include="repository\client\util\IEventSource.cs" />
     <Compile Include="repository\client\util\IListener.cs" />
     <Compile Include="repository\client\util\InternalTeamPlatform.cs" />
+    <Compile Include="repository\common\IItemHandle.cs" />
+    <Compile Include="repository\common\IManagedItemHandle.cs" />
     <Compile Include="repository\common\intern\util\StandaloneAdapterRegistry.cs" />
     <Compile Include="repository\common\intern\util\StandaloneExtensionRegistry.cs" />
     <Compile Include="repository\common\intern\util\StandaloneFileLocator.cs" />
+    <Compile Include="repository\common\model\EEnum.cs" />
+    <Compile Include="repository\common\model\RepositoryFactory.cs" />
+    <Compile Include="repository\common\model\RepositoryPackage.cs" />
+    <Compile Include="repository\common\model\RepositoryPackageImpl.cs" />
+    <Compile Include="repository\common\TeamRepositoryException.cs" />
     <Compile Include="repository\common\UUID.cs" />
   </ItemGroup>
   <ItemGroup>

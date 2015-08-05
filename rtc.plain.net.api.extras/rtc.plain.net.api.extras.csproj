@@ -39,10 +39,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="emf\ecore\Adapter.cs" />
+    <Compile Include="emf\ecore\AdapterFactory.cs" />
+    <Compile Include="emf\ecore\Diagnostic.cs" />
+    <Compile Include="emf\ecore\EAnnotation.cs" />
+    <Compile Include="emf\ecore\EAttribute.cs" />
+    <Compile Include="emf\ecore\EClass.cs" />
+    <Compile Include="emf\ecore\EClassifier.cs" />
+    <Compile Include="emf\ecore\EDataType.cs" />
+    <Compile Include="emf\ecore\EFactory.cs" />
+    <Compile Include="emf\ecore\EGenericType.cs" />
+    <Compile Include="emf\ecore\EList.cs" />
+    <Compile Include="emf\ecore\EMap.cs" />
+    <Compile Include="emf\ecore\EModelElement.cs" />
+    <Compile Include="emf\ecore\ENamedElement.cs" />
+    <Compile Include="emf\ecore\EObject.cs" />
+    <Compile Include="emf\ecore\EOperation.cs" />
+    <Compile Include="emf\ecore\EPackage.cs" />
+    <Compile Include="emf\ecore\EParameter.cs" />
+    <Compile Include="emf\ecore\EReference.cs" />
+    <Compile Include="emf\ecore\EStructuralFeature.cs" />
+    <Compile Include="emf\ecore\ETypedElement.cs" />
+    <Compile Include="emf\ecore\ETypeParameter.cs" />
+    <Compile Include="emf\ecore\impl\EPackageRegistryImpl.cs" />
+    <Compile Include="emf\ecore\InvocationDelegate.cs" />
+    <Compile Include="emf\ecore\Notification.cs" />
+    <Compile Include="emf\ecore\Notifier.cs" />
+    <Compile Include="emf\ecore\Resource.cs" />
+    <Compile Include="emf\ecore\ResourceSet.cs" />
+    <Compile Include="emf\ecore\TreeIterator.cs" />
     <Compile Include="IPath.cs" />
     <Compile Include="IProgressMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
