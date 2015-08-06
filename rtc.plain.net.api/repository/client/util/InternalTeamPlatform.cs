@@ -6,6 +6,7 @@ using System.Threading;
 using log4net;
 using rtc.plain.net.api.common.intern.util;
 using rtc.plain.net.api.extras;
+using ComLib.Configuration;
 
 namespace rtc.plain.net.api.repository.client.util
 {
@@ -40,7 +41,7 @@ namespace rtc.plain.net.api.repository.client.util
             lock (this)
             {
                 logDebug(Thread.CurrentThread.ToString());
-                logDebug("start asBundle" + asBundle);
+                logDebug("start asBundle: " + asBundle);
                 if ((started) && (asBundle != this.asBundle))
                     throw new InvalidOperationException(
                       "Already started from a different context. Current context = " + (asBundle ? "bundle" : "plain .NET"));
@@ -67,22 +68,24 @@ namespace rtc.plain.net.api.repository.client.util
 
         private void initializeAdapterRegistry()
         {
-            throw new NotImplementedException();
+            standaloneAdapterRegistry = new StandaloneAdapterRegistry();
+            standaloneAdapterRegistry.start();
         }
 
         private void initializeFileLocator()
         {
-            throw new NotImplementedException();
+            standaloneFileLocator = new StandaloneFileLocator();
         }
 
         private void initializeGeneratedPackages()
         {
-            throw new NotImplementedException();
+            // No EMF impl for now
         }
 
         private void initializeRegistry()
         {
-            throw new NotImplementedException();
+            standaloneRegistry = new StandaloneExtensionRegistry();
+            // No OSGi impl for now
         }
 
         private void initializeDebugOptions()
@@ -91,28 +94,40 @@ namespace rtc.plain.net.api.repository.client.util
 
             if (asBundle)
             {
-
-                value = "XXX";// Platform.getDebugOption("com.ibm.team.repository.client/traceNoCancelableServerCall");
-
+                throw new NotImplementedException();
             }
-
             else
             {
-
-                value = "YYY"; //System.getProperty("com.ibm.team.repository.client.traceNoCancelableServerCall");
-
+                value = Config.Get<string>("com.ibm.team.repository.client.traceNoCancelableServerCall");
             }
 
             bool TRACE_NON_CANCELABLE_SERVER_CALLS = (value != null) && (value.Equals("true", StringComparison.InvariantCultureIgnoreCase));
 
-            //TeamServiceCallContextImpl.setLogNonCancelableServiceCalls(TRACE_NON_CANCELABLE_SERVER_CALLS);
-
-            throw new NotImplementedException("TODO: descomentar as partes");
+            TeamServiceCallContextImpl.setLogNonCancelableServiceCalls(TRACE_NON_CANCELABLE_SERVER_CALLS);
         }
 
         internal void shutdown()
         {
-            throw new NotImplementedException();
+            lock(this) {
+                
+                logDebug(Thread.CurrentThread.ToString());                
+                logDebug("shutdown stopped: " + stopped);
+                
+                if (stopped)
+                {                    
+                    throw new InvalidOperationException("Already stopped");                    
+                }
+                
+                if (!asBundle)                
+                {
+                    // No OSGi impl for now
+                }
+                
+                logDebug("setting stopped variables");                
+                started = false;                
+                asBundle = false;                
+                stopped = true;                
+            }
         }
 
         internal bool isStarted()

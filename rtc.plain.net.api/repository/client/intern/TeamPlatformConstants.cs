@@ -11,12 +11,12 @@ namespace rtc.plain.net.api.repository.client.intern
 
         public static void initializeEventSourceTPE()
         {
-            throw new NotImplementedException(typeof(TeamPlatformConstants).ToString());
+            // No OSGi impl for now
         }
 
         public static void shutDownEventSourceTPE()
         {
-            throw new NotImplementedException(typeof(TeamPlatformConstants).ToString());
+            // No OSGi impl for now
         }
 
         public static Object getEventSourceTPE()

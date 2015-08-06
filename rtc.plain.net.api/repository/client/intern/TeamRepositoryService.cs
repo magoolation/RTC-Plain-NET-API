@@ -1,25 +1,101 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace rtc.plain.net.api.repository.client.intern
 {
     class TeamRepositoryService : ITeamRepositoryService
     {
-        public override ITeamRepository getTeamRepository(string paramString, int paramInt)
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private bool allowJtsLogin;
+
+        public override ITeamRepository getTeamRepository(string repositoryURI, int flags)
+        {
+            if (repositoryURI == null)
+            {
+                throw new ArgumentException();
+            }
+
+            if ((flags & 0x1) != 0)
+            {
+                bool autoLoginHandler = (flags & 0x2) == 0;
+
+                ITeamRepository teamRepository = new TeamRepository(repositoryURI, autoLoginHandler);
+
+                if (!allowJtsLogin)
+                    teamRepository.setMayLogIntoJts(false);
+
+                return teamRepository;
+            }
+
+            try
+            {
+                acquire();
+                cleanOrphans();
+
+                ITeamRepository repository = getSharedTeamRepository(repositoryURI, allowJtsLogin);
+
+                if (repository == null)
+                {
+                    if ((flags & 0x4) == 0)
+                    {
+                        repository = createSharedTeamRepository(repositoryURI, flags);
+                    }
+                }
+                else
+                {
+                    shareTeamRepository(repository);
+                }
+
+                return repository;
+            }
+            finally
+            {
+                release();
+            }
+        }
+
+        private void shareTeamRepository(ITeamRepository repository)
         {
             throw new NotImplementedException();
         }
 
-        public override ITeamRepository getTeamRepository(string paramString)
+        private ITeamRepository createSharedTeamRepository(string repositoryURI, int flags)
         {
             throw new NotImplementedException();
         }
 
-        public override ITeamRepository getUnmanagedRepository(string paramString)
+        private ITeamRepository getSharedTeamRepository(string repositoryURI, bool allowJtsLogin)
         {
             throw new NotImplementedException();
+        }
+
+        private void cleanOrphans()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void release()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void acquire()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ITeamRepository getTeamRepository(string repositoryURI)
+        {
+            return getTeamRepository(repositoryURI, 0);
+        }
+
+        public override ITeamRepository getUnmanagedRepository(string repositoryURI)
+        {
+            return getTeamRepository(repositoryURI, 3);
         }
 
         public override ITeamRepository getTeamRepository(string paramString, extras.IProgressMonitor paramIProgressMonitor)

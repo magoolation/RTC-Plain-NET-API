@@ -9,7 +9,19 @@ namespace rtc.plain.net.api.repository.client.util
 {
     public class EventSource : IEventSource
     {
+        private EventSource eventSource;
+
+        public EventSource(EventSource eventSource)
+        {
+            this.eventSource = eventSource;
+        }
+
         public void addTypedListener(Object category, Object listener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static explicit operator EventSource(ITeamRepositoryService v)
         {
             throw new NotImplementedException();
         }

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonLibrary, Version=0.9.6.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonLibrary.NET.0.9.6.1\lib\CommonLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
@@ -48,6 +52,11 @@
     <Compile Include="links\common\IItemType.cs" />
     <Compile Include="links\common\ILinkType.cs" />
     <Compile Include="links\common\IReference.cs" />
+    <Compile Include="repository\client\intern\ITeamServer.cs" />
+    <Compile Include="repository\client\intern\TeamRepository.cs" />
+    <Compile Include="repository\client\intern\TeamServerFactory.cs" />
+    <Compile Include="repository\client\LoginHandler.cs" />
+    <Compile Include="repository\client\util\TeamServiceCallContextImpl.cs" />
     <Compile Include="repository\common\IAuditable.cs" />
     <Compile Include="repository\common\IAuditableHandle.cs" />
     <Compile Include="links\common\ILink.cs" />
@@ -69,6 +78,9 @@
     <Compile Include="repository\client\util\InternalTeamPlatform.cs" />
     <Compile Include="repository\common\IItemHandle.cs" />
     <Compile Include="repository\common\IManagedItemHandle.cs" />
+    <Compile Include="repository\common\intern\util\ExtensionReader.cs" />
+    <Compile Include="repository\common\intern\util\IRegistryChangeEvent.cs" />
+    <Compile Include="repository\common\intern\util\IRegistryChangeListener.cs" />
     <Compile Include="repository\common\intern\util\StandaloneAdapterRegistry.cs" />
     <Compile Include="repository\common\intern\util\StandaloneExtensionRegistry.cs" />
     <Compile Include="repository\common\intern\util\StandaloneFileLocator.cs" />

@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonLibrary, Version=0.9.6.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonLibrary.NET.0.9.6.1\lib\CommonLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,6 +54,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="IProgressMonitor.cs" />
+    <Compile Include="NullProgressMonitor.cs" />
     <Compile Include="WorkShopRTCServerSetupTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +64,9 @@
       <Project>{9e9722d5-f27c-495e-acfd-72ded765211b}</Project>
       <Name>rtc.plain.net.api</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

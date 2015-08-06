@@ -30,7 +30,7 @@ namespace rtc.plain.net.api.tests
             {
                 Console.WriteLine("Team Platform started");
                 WorkShopRTCServerSetupTest setupExtDevServer = new WorkShopRTCServerSetupTest();
-                string args = null;
+                string[] args = { "http://localhost:9443/ccm", "myadmin", "myadmin" };
                 result = setupExtDevServer.run(args);
             }
             catch (TeamRepositoryException x)
@@ -44,9 +44,34 @@ namespace rtc.plain.net.api.tests
             }
         }
 
-        private bool run(string args)
+        private bool run(string[] args)
         {
+            if (args.Length != 3)
+            {
+                Console.WriteLine("Usage: ServerSetup <repositoryURI> <userId> <password>");
+                return false;
+            }
+
+            String repositoryURI = args[0];
+            String userId = args[1];
+            String password = args[2];
+
+            IProgressMonitor monitor = new NullProgressMonitor();
+            ITeamRepository teamRepository = logIntoTeamRepository(repositoryURI,
+                    userId, password, monitor);
+
             throw new NotImplementedException();
+        }
+
+        private ITeamRepository logIntoTeamRepository(string repositoryURI, string userId, string password, object monitor)
+        {
+            Console.WriteLine("Trying to log into repository: " + repositoryURI);
+            ITeamRepository teamRepository = TeamPlatform
+                    .getTeamRepositoryService().getTeamRepository(repositoryURI);
+            teamRepository.registerLoginHandler(new LoginHandler(userId, password));
+            teamRepository.login(monitor);
+            Console.WriteLine("Login succeeded.");
+            return teamRepository;
         }
     }
 }

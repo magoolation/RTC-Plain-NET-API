@@ -40,20 +40,19 @@ namespace rtc.plain.net.api.repository.client
             return ContentManager.getMaxSimultaneousDownloads();
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static ITeamRepositoryService getTeamRepositoryService()
         {
-            lock (repositoryService)
+
+            if (!InternalTeamPlatform.getDefault().isStarted())
             {
-                if (!InternalTeamPlatform.getDefault().isStarted())
-                {
-                    throw new InvalidOperationException("Platform hasn't been started yet");
-                }
-                if (repositoryService == null)
-                {
-                    repositoryService = new TeamRepositoryService();
-                }
-                return repositoryService;
+                throw new InvalidOperationException("Platform hasn't been started yet");
             }
+            if (repositoryService == null)
+            {
+                repositoryService = new TeamRepositoryService();
+            }
+            return repositoryService;
         }
     }
 }
